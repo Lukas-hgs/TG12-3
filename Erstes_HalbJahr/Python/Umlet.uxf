@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>210</y>
+      <w>650</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Spieler
+-
++ Name: str{Min. 1 Buchstabe}
++ Jahrgang: int 
++ Stärke: int {1&lt;=Stärke&lt;=10}
++ Torschuss: int {1&lt;=Torschuss&lt;=10}
++ Motivation: int {1&lt;=Motivation&lt;=10}
+-
++ Spieler(Name:str; Jahrgang:int; Stärke:int; torschuss:int; Motivation:int)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
