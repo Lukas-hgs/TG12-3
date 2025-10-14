@@ -1,11 +1,4 @@
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
-# Route für die Hauptseite
-@app.route('/')
-def home():
-    return """<!doctype html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -117,22 +110,4 @@ def home():
   })();
   </script>
 </body>
-</html>"""
-
-
-@app.route('/Profil')
-def gym():
-    return "Eray hat schwache Arme."
-
-# Route zum Empfangen von Nachrichten
-@app.route('/message', methods=['POST'])
-def handle_message():
-    data = request.json
-    message = data.get('message', '')
-    print(f"Empfangen: {message}")
-    response_message = f"Echo: {message}"
-    return jsonify({"response": response_message})
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12345)  # Server starten
-
+</html>
