@@ -1,4 +1,8 @@
 from flask import Flask, request, jsonify
+from pydantic import BaseModel, Field, field_validator, ValidationError
+from model import Spieler 
+
+spieler_Liste=[]
 
 def attribute():
   return f"""
@@ -12,7 +16,6 @@ def attribute():
     URL: {request.url}
     Remote Address: {request.remote_addr}
     """
-
 app = Flask(__name__)
 
 # Route für die Hauptseite
@@ -36,14 +39,37 @@ def handle_message():
     response_message = f"Echo: {message}"
     return jsonify({"response": response_message})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12345)  # Server starten
 
   
-
-
+@app.route("/Spieler", methods=["POST"])
+def handle_Spieler():
+    """Erstellt einen neuen Spieler aus JSON-Daten und prüft es mit Pydantic."""
+    try:
+        data = request.get_json()
+        spieler = Spieler(**data)
+        spieler_Liste.append(spieler.model_dump())
+        return jsonify({
+            "status": "ok👍",
+            "message": "Spieler erfolgreich erstellt🤝",
+            "Spieler": spieler.model_dump()
+        }), 201
+    except ValidationError as e:
+        return jsonify({
+            "status": "error",
+            "message": "Validierung fehlgeschlagen",
+            "details": e.errors()
+        }), 400
+    
+@app.route('/Test')
+def test():
+    daten = ""
+    for spieler in spieler_Liste:
+        daten2 = (f"{daten2}<br> {spieler}")
+    print(daten2)
+    return(f"{daten2}")
  
     
 
     
-
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=12345)  # Server starten
