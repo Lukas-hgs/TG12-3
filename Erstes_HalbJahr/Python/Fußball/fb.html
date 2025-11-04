@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Fußballpieler erfassen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0927d1;
+            color: #ffffff;
+            font-size: 18px; /* Grundschrift etwas größer */
+            line-height: 1.4;
+            font-family: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 400;
+
+            /* neu: zentrieren */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        /* zentrierter Box-Container */
+        .container {
+            width: 100%;
+            max-width: 720px;
+            /* Box wiederhergestellt */
+            background: rgba(255,255,255,0.03);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        }
+
+        h1 { font-size: 2rem; font-weight: 700; letter-spacing: 0.5px; margin-top: 0; }
+        label, input, button, pre { font-size: 1rem; }
+        input, button { padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); color: inherit; resize:vertical; font-family:inherit; font-size:1rem; }
+        input:focus, button:focus { outline: 2px solid rgba(255,255,255,0.12); outline-offset: 2px; }
+        button { font-weight: 600; border-radius: 12px; cursor: pointer; background: rgba(255,255,255,0.12); }
+
+        /* Formularabstände */
+        form label { display: block; margin-top: 12px; margin-bottom: 6px; }
+        form input { width: 100%; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Erstelle einen Spieler</h1>
+
+        <!-- Formular -->
+        <form id="fbForm">
+            <label for="name">Name💀:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="jahrgang">Jahrgang(1980-2010)📆:</label>
+            <input type="number" id="jahrgang" name="jahrgang" min="1980" max="2010" required>
+
+            <label for="staerke">Stärke(1-10)💪:</label>
+            <input type="number" id="staerke" name="staerke" min="1" max="10" required>
+
+            <label for="torschuss">Torschuss(1-10)⚽:</label>
+            <input type="number" id="torschuss" name="torschuss" min="1" max="10" required>
+
+            <label for="motivation">Motivation(1-10)🎉:</label>
+            <input type="number" id="motivation" name="motivation" min="1" max="10" required>
+
+            <div style="margin-top:16px;">
+                <button type="submit">Bestätigen</button>
+            </div>
+        </form>
+
+        <h3 style="margin-top:18px;">Antwort des Servers😒:</h3>
+        <label for="serverAntwort" style="display:block; margin-top:8px; margin-bottom:6px; font-weight:600;">Server-Ausgabe:</label>
+        <textarea id="serverAntwort" name="serverAntwort" rows="8" readonly
+            placeholder="Server-Antwort erscheint hier..."
+            style="width:100%; box-sizing:border-box; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.03); color:inherit;"></textarea>
+    </div>
+
+    <!-- JavaScript folgt unten -->
+    <script src="client.js"></script>
+</body>
+</html>

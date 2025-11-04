@@ -4,7 +4,7 @@ import requests
 
 URL = "http://localhost:12345/Spieler"
 
-
+spieler_liste = []
 # Beispiel-Daten
 
 spieler_daten = {
@@ -14,6 +14,9 @@ spieler_daten = {
     "torschuss": int (input("Torschuss (1-10): ")),
     "motivation": int (input("Motivation (1-10): "))
 }
+
+
+
 
 response = requests.post(URL, json=spieler_daten)
 print("Statuscode:", response.status_code)

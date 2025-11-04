@@ -1,13 +1,40 @@
 from flask import Flask, request, jsonify
-from pydantic import BaseModel, Field, field_validator, ValidationError
-from model import Spieler 
+from flask_cors import CORS
+from pydantic import ValidationError
+from model import Spieler
+import json
+import os
 
-spieler_Liste=[]
+app = Flask(__name__)
+CORS(app)
 
+dateiname = "spieler.json"
+if os.path.exists(dateiname):
+    try:
+        with open(dateiname, "r", encoding="utf-8") as f:
+            daten = json.load(f)
+        spieler_liste = [Spieler(**s) for s in daten]
+        print("📂 Geladene Spieler:")
+        for s in spieler_liste:
+            print(s)
+    except Exception as e:
+        print("Fehler beim Laden der Datei:", e)
+        spieler_liste = []
+else:
+    print(f"⚠️ Datei '{dateiname}' wurde nicht gefunden. Leere Spielerliste wird erstellt.")
+    spieler_liste = []
+
+def save_spieler_liste():
+    try:
+        with open(dateiname, "w", encoding="utf-8") as f:
+            json.dump([s.model_dump() for s in spieler_liste], f, ensure_ascii=False, indent=4)
+        print("✅ Spieler wurden in '{}' gespeichert.".format(dateiname))
+    except Exception as e:
+        print("Fehler beim Speichern der Spielerliste:", e)
 def attribute():
-  return f"""
+    return f"""
     Method: {request.method}
-    Headers: {request.headers}
+    Headers: {dict(request.headers)}
     Args: {request.args}
     Form: {request.form}
     Data: {request.data}
@@ -16,38 +43,40 @@ def attribute():
     URL: {request.url}
     Remote Address: {request.remote_addr}
     """
-app = Flask(__name__)
 
-# Route für die Hauptseite
 @app.route('/')
 def home():
-   response_attribut = attribute()
-   return jsonify({"attribut": response_attribut})
-
+    response_attribut = attribute()
+    return jsonify({"attribut": response_attribut})
 
 @app.route('/Profil')
 def gym():
-   return "<html><body><h1>Eray hat schwache Arme.</h1></body></html>"
+    return "<html><body><h1>Eray hat schwache Arme.</h1></body></html>"
 
-# Route zum Empfangen von Nachrichten
 @app.route('/message', methods=['POST'])
 def handle_message():
-    data = request.json
+    data = request.json or {}
     message = data.get('message', '')
     print(f"Empfangen: {message}")
     print(attribute())
     response_message = f"Echo: {message}"
     return jsonify({"response": response_message})
 
+# Datei, in der die Spieler gespeichert werden
+dateiname = "spieler.json"
 
-  
+# Beim Start vorhandene Spieler laden
+
+
 @app.route("/Spieler", methods=["POST"])
 def handle_Spieler():
     """Erstellt einen neuen Spieler aus JSON-Daten und prüft es mit Pydantic."""
     try:
-        data = request.get_json()
+        data = request.get_json() or {}
         spieler = Spieler(**data)
-        spieler_Liste.append(spieler.model_dump())
+        spieler_liste.append(spieler)
+        with open("spieler.json", "w", encoding="utf-8") as f:
+            json.dump([s.model_dump() for s in spieler_liste], f, ensure_ascii=False, indent=4)
         return jsonify({
             "status": "ok👍",
             "message": "Spieler erfolgreich erstellt🤝",
@@ -59,17 +88,23 @@ def handle_Spieler():
             "message": "Validierung fehlgeschlagen",
             "details": e.errors()
         }), 400
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": "Interner Serverfehler",
+            "details": str(e)
+        }), 500
     
-@app.route('/Test')
-def test():
+@app.route('/sp')
+def Test_Ausgabe():
     daten = ""
-    for spieler in spieler_Liste:
-        daten2 = (f"{daten2}<br> {spieler}")
-    print(daten2)
-    return(f"{daten2}")
- 
-    
+    for s in spieler_liste:
+        daten = (f"{daten} <br> {s}")
+    print (daten)
+    return (f"{daten}")
 
-    
+
+ 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12345)  # Server starten
+    app.run(host='0.0.0.0', port=5000, debug=True)

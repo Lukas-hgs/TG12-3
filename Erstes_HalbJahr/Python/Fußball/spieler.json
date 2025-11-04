@@ -1,0 +1,135 @@
+[
+    {
+        "name": "Lukas",
+        "jahrgang": 2006,
+        "stearke": 10,
+        "torschuss": 10,
+        "motivation": 1
+    },
+    {
+        "name": "Goat",
+        "jahrgang": 1000,
+        "stearke": 10,
+        "torschuss": 10,
+        "motivation": 10
+    },
+    {
+        "name": "Daniel",
+        "jahrgang": 2007,
+        "stearke": 8,
+        "torschuss": 9,
+        "motivation": 7
+    },
+    {
+        "name": "Felix",
+        "jahrgang": 2007,
+        "stearke": 1,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Theo",
+        "jahrgang": 2007,
+        "stearke": 7,
+        "torschuss": 6,
+        "motivation": 8
+    },
+    {
+        "name": "Amy",
+        "jahrgang": 2024,
+        "stearke": 1,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Sophfia",
+        "jahrgang": 2007,
+        "stearke": 2,
+        "torschuss": 2,
+        "motivation": 6
+    },
+    {
+        "name": "Goatray",
+        "jahrgang": 2007,
+        "stearke": 10,
+        "torschuss": 10,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Eray",
+        "jahrgang": 1980,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "BAum",
+        "jahrgang": 2010,
+        "stearke": 5,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "BAum",
+        "jahrgang": 2010,
+        "stearke": 5,
+        "torschuss": 7,
+        "motivation": 9
+    },
+    {
+        "name": "Sophenis",
+        "jahrgang": 2010,
+        "stearke": 5,
+        "torschuss": 7,
+        "motivation": 9
+    }
+]
